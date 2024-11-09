@@ -1,4 +1,4 @@
-from time import time
+from datetime import datetime
 import multiprocessing
 
 
@@ -11,17 +11,17 @@ def read_info(name):
             line = file.readline()
 
 
-files = ['file 1.txt', 'file 2.txt', 'file 3.txt', 'file 4.txt']
+files = [f'./file {number}.txt' for number in range(1, 5)]
 
-# start_time = time()
+# start = datetime.now()
 # for file in files:
 #     read_info(file)
-# end_time = time()
-# print(f'Время выполнения задачи линейно: {round((end_time - start_time), 2)} c')
+# end = datetime.now()
+# print(end - start)
 
 if __name__ == '__main__':
     with multiprocessing.Pool() as pool:
-        start_time = time()
+        start = datetime.now()
         result = pool.map(read_info, files)
-        end_time = time()
-        print(f'Время выполнения задачи многопроцессорно: {round((end_time - start_time), 2)} c')
+        end = datetime.now()
+        print(end - start)
